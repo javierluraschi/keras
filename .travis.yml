@@ -20,4 +20,9 @@ before_script:
   - pip2.7 install --upgrade --ignore-installed --user travis keras h5py pyyaml requests Pillow scipy theano
   - R -e 'tensorflow::install_tensorflow()'
 
+after_failure:
+  - |
+    cd tests
+    travis_wait 30 Rscript ../.travis.R
+    sleep 2
 
